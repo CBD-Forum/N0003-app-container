@@ -1,0 +1,20 @@
+upstream gateway {
+	# console
+	server 127.0.0.1:8081;
+}
+
+server {
+	listen 8010;
+
+	root /home/ubuntu/igc;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name app-container-console-client;
+
+	location / {
+		proxy_pass http://gateway;
+		try_files $uri $uri/ =404;
+	}
+
+}

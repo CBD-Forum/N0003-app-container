@@ -1,0 +1,269 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="orderShipAddController as vm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper-xs">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h1 class="font-thin h3 text-black m-l m-t-sm m-b-sm">订单</h1>
+                    <!--<small class="text-muted m-l">订单管理</small>-->
+                </div>
+            </div>
+        </div>
+
+
+        <!--content-->
+        <div class="wrapper bg-light">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form role="form" name="form" class="form-horizontal" method="get">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >订单号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.orderno}}</p>
+                            </div>
+                        </div>
+
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">收货人姓名</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.consignee}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">收货人联系方式</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.consignorPhone}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >收货地址</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.deliveryaddress}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">发货人姓名</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.consignor}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">发货人联系方式</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.consigneePhone}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">发货地址</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.consigningform.shippingaddress}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group" ng-if="vm.orderInfo.carryingform.carryingformno">
+                            <label class="col-sm-2 control-label" >运单号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.carryingform.carryingformno}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.carryingform.datefordeliver">
+                            <label class="col-sm-2 control-label" >货物到达时间</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.carryingform.datefordeliver}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.carryingform.dateforreceiver">
+                            <label class="col-sm-2 control-label" >确认收货时间</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.carryingform.dateforreceiver}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >船名/编号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.vessel.name + '/' + vm.orderInfo.bookingform.voyage.vessel.vesselno}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.voyno">
+                            <label class="col-sm-2 control-label" >航次号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.voyno}}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.departuredate">
+                            <label class="col-sm-2 control-label" >船离港时间</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.departuredate}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.arrivaldate">
+                            <label class="col-sm-2 control-label" >船到达时间</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.arrivaldate}}</p>
+                            </div>
+                        </div>
+                        <!--<div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.placeofdelivery">-->
+                        <!--<label class="col-sm-2 control-label" >船投递地址</label>-->
+                        <!--<div class="col-sm-5">-->
+                        <!--<p class="form-control-static">{{vm.orderInfo.bookingform.voyage.placeofdelivery}}</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.portofloading">
+                            <label class="col-sm-2 control-label" >装船港口</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.portofloading}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.bookingform.voyage.portofdischarge">
+                            <label class="col-sm-2 control-label" >卸货港口</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.bookingform.voyage.portofdischarge}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >舱位号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">
+                                    <span ng-repeat="cc in vm.orderInfo.bookingform.berthno">
+                                        <span class="label bg-light dk">{{cc}}</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                集装箱
+                            </label>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered table-striped table-hover bg-white m-t">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th><th>尺寸(m<sup>3</sup>)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="container in vm.orderInfo.bookingform.containers track by $index">
+                                        <td>{{container.containerno}}</td>
+                                        <td>{{container.measurement}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                货物清单
+                            </label>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered table-striped table-hover bg-white m-t">
+                                    <thead>
+                                    <tr>
+                                        <th>名称</th><th>类型</th><th>尺寸(m<sup>3</sup>)</th><th>总重量(kg)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="good in vm.orderInfo.consigningform.goodslist track by $index">
+                                        <td>{{good.name}}</td>
+                                        <td>{{good.type}}</td>
+                                        <td>{{good.measurement}}</td>
+                                        <td>{{good.grossweight}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="vm.orderInfo.carryingform.vehicles && vm.orderInfo.carryingform.vehicles.length > 0">
+                            <label class="col-sm-2 control-label">
+                                拖车
+                            </label>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered table-striped table-hover bg-white m-t">
+                                    <thead>
+                                    <tr>
+                                        <th>车辆编号</th><th>驾驶人</th><th>联系方式</th><th>驾驶证号</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="vehicle in vm.orderInfo.carryingform.vehicles track by $index">
+                                        <td>{{vehicle.vehicleno}}</td>
+                                        <td>{{vehicle.driver.name}}</td>
+                                        <td>{{vehicle.driver.phone}}</td>
+                                        <td>{{vehicle.driver.drivinglicense}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">货代公司</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.company.company.name}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">期望发货的日期</label>
+                            <div class="col-sm-5">
+                                <div class="input-group w-md">
+                                    <p class="form-control-static">{{vm.orderInfo.consigningform.expecteddeliverydate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.state | orderdesc}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <button type="submit" class="btn btn-default"  ng-click="vm.acceptAction('later')">返回</button>
+                                <button type="submit" class="btn btn-success" ng-if="vm.orderInfo.state === 'order_yard_arrived'"  ng-click="vm.acceptAction('loadgoods')">货物装船</button>
+                                <button type="submit" class="btn btn-success" ng-if="vm.orderInfo.state === 'order_goods_loaded'" ng-click="vm.acceptAction('departrue')">离港</button>
+                                <button type="submit" class="btn btn-success" ng-if="vm.orderInfo.state === 'order_goods_shipping'" ng-click="vm.acceptAction('arrivedestinationport')">抵达港口</button>
+                                <button type="submit" class="btn btn-success" ng-if="vm.orderInfo.state === 'order_goods_arrived'" ng-click="vm.acceptAction('delivergoods')">运送货物</button>
+                                <button type="submit" class="btn btn-default" ng-disabled="true" ng-show="vm.orderInfo.state === 'order_finished'">已完成</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="orderModalContent.html">
+            <div ng-include="'app/components/core/modal.order4client.html'"></div>
+        </script>
+        <script type="text/ng-template" id="myModalContent.html">
+            <div ng-include="'app/components/core/modal.html'"></div>
+        </script>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,97 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="form-box" ng-controller="SignupController as vm" style="margin-top: 0px;">
+    <div class="header" style="box-shadow: none;">
+        <div style="height: 60px; width: 60px;display: inline;"><img style="height: 60px;width: 60px;" src="images/logo.png"></div>
+        <!--<div style="display: inline;">-->
+        <!--<div style="font-size: 25px;height: 40px;font-weight: 600;">注册</div>-->
+        <!--</div>-->
+    </div>
+
+    <form name="form" class="form-validation">
+        <div class="body bg-gray">
+            <div class="text-danger wrapper text-center" ng-show="authError">
+                {{authError}}
+            </div>
+
+            <div class="list-group list-group-sm m-t">
+                <div class="list-group-item">
+                    <input placeholder="用户名" type="text" class="form-control no-border" ng-model="vm.user.username" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="密码" type="password" class="form-control no-border" ng-model="vm.password" required>
+                </div>
+            </div>
+            <div class="list-group list-group-sm">
+                <select class="list-group-item" ng-model="vm.user.role" ng-change="vm.roleTypeChangedAction()">
+                    <option ng-repeat="role in vm.roles" class="col-md-10 col-sm-10" value="{{role.role}}">{{role.name}}</option>
+                </select>
+            </div>
+            <div class="list-group list-group-sm m-t" ng-if="vm.user.role === 'regularclient'">
+                <div class="list-group-item">
+                    <input placeholder="姓名" type="text" class="form-control no-border" ng-model="vm.user.personalinfo.name" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="邮箱" type="text" class="form-control no-border" ng-model="vm.user.personalinfo.email" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="电话" type="text" class="form-control no-border" ng-model="vm.user.personalinfo.phonenum" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="地址" type="text" class="form-control no-border" ng-model="vm.user.personalinfo.address" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="传真" type="text" class="form-control no-border" ng-model="vm.user.personalinfo.fax">
+                </div>
+            </div>
+            <div class="list-group list-group-sm m-t" ng-if="vm.user.role !== 'regularclient'">
+                <div class="list-group-item">
+                    <input placeholder="公司名称" type="text" class="form-control no-border" ng-model="vm.user.company.name" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="公司地址" type="text" class="form-control no-border" ng-model="vm.user.company.address" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="公司网址" type="text" class="form-control no-border" ng-model="vm.user.company.homepage">
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="组织机构代码" type="text" class="form-control no-border" ng-model="vm.user.company.orgid" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="税务登记号码" type="text" class="form-control no-border" ng-model="vm.user.company.taxid" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="统一社会信用代码" type="text" class="form-control no-border" ng-model="vm.user.company.creditid" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="商业标识" type="text" class="form-control no-border" ng-model="vm.user.company.businessid" required>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-lg btn-block" style="background: #61a9eb;color: white;" ng-click="vm.registerAction()" ng-disabled='form.$invalid'>注册</button>
+            <div class="line line-dashed"></div>
+
+            <div class="form-group">
+                <div class="text-center" ng-click="vm.gotoLoginAction()">已经有账号了？去登录</div>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+</div>

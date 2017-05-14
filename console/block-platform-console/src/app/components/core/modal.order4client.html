@@ -1,0 +1,61 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="modal-header" style="background-color:#23B7E5;">
+    <div>
+        <h4 class="modal-title text-left font-bold text-white pull-left">添加货物</h4>
+        <a class="pull-right text-white h4 modal-title font-bold" ng-click="cancel()" href><i class="fa fa-close"></i></a>
+    </div>
+</div>
+<div class="modal-body text-center text-lg">
+    <!--{{tipsInfo.content}}-->
+    <form role="form" name="form" class="form-horizontal" method="get">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+                <input ng-model="good.name" type="text" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+                <input ng-model="good.type" type="text" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">尺寸</label>
+            <div class="col-sm-10">
+                <input ng-model="good.measurement" type="number" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">总重量</label>
+            <div class="col-sm-10">
+                <input ng-model="good.grossweight" type="number" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group" ng-if="containers.length > 0">
+            <label class="col-sm-2 control-label">集装箱</label>
+            <div class="col-sm-10">
+                <select class="m-n form-control col-md-10" ng-model="good.containerno" style="width: 200px;">
+                    <option ng-repeat="container in containers" class="col-md-10 col-sm-10" value="{{container.containerno}}">{{container.containerno}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-click="cancel()" class="btn btn-sm btn-default form-inline btn-addon bg-light"><i class="fa fa-ban"></i>取消</button>
+    <button class="btn btn-sm btn-success form-inline btn-addon" ng-click="ok()" ng-disabled="form.$invalid"><i class="fa fa-check-circle"></i>添加</button>
+</div>

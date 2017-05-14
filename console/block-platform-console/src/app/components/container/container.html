@@ -1,0 +1,102 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="ContainerController as vm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper-xs">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <h1 class="font-thin h3 text-black m-l m-t-sm m-b-sm">集装箱</h1>
+                </div>
+            </div>
+        </div>
+
+
+        <!--content-->
+        <div class="wrapper bg-light">
+            <div class="panel panel-default">
+                <!--<div class="panel-heading font-bold">-->
+                <!--添加订单-->
+                <!--</div>-->
+                <div class="panel-body">
+
+                    <form role="form" name="form" class="form-horizontal" method="get">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">集装箱编号</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.containerInfo.containerno" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">类型</label>-->
+                            <!--<div class="col-sm-5">-->
+                                <!--<input ng-model="vm.containerInfo.type" type="text" name="drive" class="form-control" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">最大重量</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.containerInfo.maxweight" type="number" name="drive" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">毛重</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.containerInfo.tareweight" type="number" name="drive" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">尺寸</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.containerInfo.measurement" type="number" name="drive" class="form-control" required>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">位置</label>-->
+                            <!--<div class="col-sm-5">-->
+                                <!--<input ng-model="vm.containerInfo.location" type="text" name="drive" class="form-control" required>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-5">
+                                <select class="m-n form-control col-md-10" ng-model="vm.status" style="width: 200px;">
+                                    <option ng-repeat="status in vm.statusType" class="col-md-10 col-sm-10" value="{{status.id}}">{{status.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="button" class="btn btn-default" ng-click="vm.cancelAction()">Cancel</button>
+                                <button type="button" class="btn btn-primary" ng-disabled='form.$invalid' ng-click="vm.submitAction()">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

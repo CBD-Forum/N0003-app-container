@@ -1,0 +1,200 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<!-- list -->
+
+<ul class="nav" ng-controller="AsideController as vm" ng-switch="vm.roleType">
+    <div class="regular" ng-switch-when="regularclient">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>业务</span>
+        </li>
+        <li>
+            <a href class="auto" ui-sref="app.userorder">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                    <!--<b class="badge bg-info pull-right">5</b>-->
+                    <i class="glyphicon glyphicon-list icon text-success"></i>
+                    <span class="font-bold">订单管理</span>
+            </a>
+        </li>
+        <li class="line dk"></li>
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>查询</span>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.company({type:'cargoagent'})">
+                <i class="glyphicon glyphicon-th icon"></i>
+                <span class="font-bold">货代公司</span>
+            </a>
+        </li>
+    </div>
+    <div class="cargoagent" ng-switch-when="cargoagent">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>业务</span>
+        </li>
+        <li>
+            <a href class="auto" ui-sref="app.goodorder">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                <i class="glyphicon glyphicon-list icon text-success"></i>
+                <span class="font-bold">订单管理</span>
+            </a>
+        </li>
+        <!--<li ui-sref-active="active">-->
+            <!--<a ui-sref="app.goodstorages">-->
+                <!--<i class="glyphicon glyphicon-th-large icon text-info-dker"></i>-->
+                <!--<span class="font-bold">仓库管理</span>-->
+            <!--</a>-->
+        <!--</li>-->
+
+        <li class="line dk"></li>
+
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>查询</span>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.company({type:'carrier'})">
+                <i class="glyphicon glyphicon-compressed icon"></i>
+                <span class="font-bold">拖车公司</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.company({type:'shipper'})">
+                <i class="glyphicon glyphicon-globe icon"></i>
+                <span class="font-bold">船运公司</span>
+            </a>
+        </li>
+    </div>
+    <div class="carrier" ng-switch-when="carrier">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>业务</span>
+        </li>
+        <li>
+            <a href class="auto" ui-sref="app.carorder">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+                <!--<b class="badge bg-info pull-right">7</b>-->
+                <i class="glyphicon glyphicon-list icon text-success"></i>
+                <span class="font-bold">订单管理</span>
+            </a>
+            <!--<ul class="nav nav-sub dk">-->
+                <!--<li class="nav-sub-header">-->
+                    <!--<a href>-->
+                        <!--<span>Dashboard</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v1">-->
+                        <!--<b class="label bg-black pull-right">3</b>-->
+                        <!--<span>待处理</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v1">-->
+                        <!--<b class="label bg-black pull-right">4</b>-->
+                        <!--<span>进行中</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v2">-->
+                        <!--<b class="label bg-black pull-right">N</b>-->
+                        <!--<span>已完成</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </li>
+
+        <li ui-sref-active="active">
+            <a ui-sref="app.vehicles">
+                <i class="glyphicon glyphicon-compressed icon text-info-lter"></i>
+                <span class="font-bold">货车管理</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.transporttask">
+                <i class="glyphicon glyphicon-calendar icon text-info-lter"></i>
+                <span class="font-bold">运输计划</span>
+            </a>
+        </li>
+
+    </div>
+    <div class="shipper" ng-switch-when="shipper">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>业务</span>
+        </li>
+        <li>
+            <a href class="auto" ui-sref="app.shiporder">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+                <!--<b class="badge bg-info pull-right">35</b>-->
+                <i class="glyphicon glyphicon-list icon text-success"></i>
+                <span class="font-bold">订单管理</span>
+            </a>
+            <!--<ul class="nav nav-sub dk">-->
+                <!--<li class="nav-sub-header">-->
+                    <!--<a href>-->
+                        <!--<span>Dashboard</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v1">-->
+                        <!--<b class="label bg-black pull-right">3</b>-->
+                        <!--<span>待处理</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v1">-->
+                        <!--<b class="label bg-black pull-right">32</b>-->
+                        <!--<span>进行中</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li ui-sref-active="active">-->
+                    <!--<a ui-sref="app.dashboard-v2">-->
+                        <!--<b class="label bg-black pull-right">N</b>-->
+                        <!--<span>已完成</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </li>
+
+        <li ui-sref-active="active">
+            <a ui-sref="app.containers">
+                <i class="glyphicon glyphicon-align-center icon text-info-lter"></i>
+                <span class="font-bold">集装箱管理</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.shippingschedule">
+                <i class="glyphicon glyphicon-tint icon text-info-lter"></i>
+                <span class="font-bold">航次管理</span>
+            </a>
+        </li>
+        <!--<li ui-sref-active="active">-->
+            <!--<a ui-sref="app.mail.list">-->
+                <!--<i class="glyphicon glyphicon-user icon text-info-lter"></i>-->
+                <!--<span class="font-bold">账户管理</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    </div>
+    <div class="" ng-switch-default>加载中...</div>
+</ul>
+<!-- / list -->

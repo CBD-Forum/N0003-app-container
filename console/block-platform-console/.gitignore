@@ -1,0 +1,15 @@
+logs/*
+!.gitkeep
+node_modules/
+tmp
+tmp/
+tmp/serve
+tmp/serve/
+.idea/
+.DS_Store
+angular-phonecat-snapshots
+/bower_components/*
+lint/
+build
+dist
+iot-web

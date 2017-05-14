@@ -1,0 +1,74 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="form-box" ng-controller="SigninController as vm">
+    <!--<div class="header">-->
+        <!--<img class="img-responsive" src="images/bird.png">-->
+    <!--</div>-->
+    <div class="header" style="box-shadow: none;">
+        <div style="height: 90px; width: 90px;display: inline;"><img style="height: 90px;width: 90px;" src="images/logo.png"></div>
+        <!--<div style="display: inline;">-->
+            <!--<div style="font-size: 25px;height: 40px;font-weight: 900;">登录</div>-->
+        <!--</div>-->
+
+    </div>
+
+    <form role="form" name="form" ng-submit="vm.login()">
+        <div class="body bg-gray">
+            <div class="text-center text-danger" ng-show="vm.authError">
+                <!--<h5>登录失败（{{vm.authError}})</h5>-->
+            </div>
+
+            <div class="form-group">
+                <label for="username" >用户名</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <!-- fa-envelope -->
+                    <input ng-disabled="vm.isLogining" id="username" name="username" type="text"
+                           class="form-control" placeholder="用户名"
+                           ng-model="vm.user.username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" >密码</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input ng-disabled="vm.isLogining" id="password" name="password" type="password" class="form-control"
+                                                                                             placeholder="密码" ng-model="vm.user.password" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button ng-disabled="vm.isLogining" ng-click="vm.login()" type="submit" class="btn btn-lg btn-block m-t-xl" style="background: #61a9eb;color: white;" ng-disabled='form.$invalid'>
+                    <i class="fa fa-key"></i>登录
+                </button>
+            </div>
+
+            <div class="form-group">
+                <div class="text-center" ng-click="vm.gotoRegisterAction()">还没有账号？现在注册</div>
+            </div>
+
+        </div>
+        <!-- /.box-body -->
+
+        <div class="footer">
+            <div class="margin text-center">
+
+            </div>
+        </div>
+    </form>
+</div>

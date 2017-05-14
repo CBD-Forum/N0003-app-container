@@ -1,0 +1,93 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="ShippingScheduleController as vm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper-xs">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h1 class="font-thin h3 text-black m-l m-t-sm">船运计划</h1>
+                    <!--<small class="text-muted m-l">订单管理</small>-->
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12" ng-hide="vm.isReadOnly">
+                    <a class="btn btn-info pull-right m-t-sm" ng-click="vm.gotoDetail('new')">添加</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!--content-->
+
+        <div class="m-l m-r">
+            <table st-table="vm.items" st-safe-src="vm.items" class="table table-bordered table-striped table-hover bg-white m-t">
+                <thead>
+                <tr>
+                    <th ng-repeat="title in vm.titles">
+                        {{title}}
+                    </th>
+                    <th ng-hide="vm.isReadOnly">
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in vm.items track by $index" ng-click="vm.gotoDetail('detail',$index)">
+                    <td>
+                        {{item.voyno}}
+                    </td>
+                    <td>
+                        {{item.portofloading}}
+                    </td>
+                    <td>
+                        {{item.portofdischarge}}
+                    </td>
+                    <td>
+                        {{item.placeofdelivery}}
+                    </td>
+                    <td>
+                        {{item.vessel.vesselno}}
+                    </td>
+                    <td>
+                        {{item.vessel.name}}
+                    </td>
+                    <td>
+                        {{item.departuredate}}
+                    </td>
+                    <td>
+                        {{item.arrivaldate}}
+                    </td>
+                    <td ng-hide="vm.isReadOnly">
+                        <a ng-click="vm.openAlert('',$index);$event.stopPropagation();" class="btn-danger">&nbsp;删除&nbsp;</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div auto-pagination pageination="vm.pageination"></div>
+
+
+
+    </div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div ng-include="'app/components/core/modal.html'"></div>
+    </script>
+</div>
+

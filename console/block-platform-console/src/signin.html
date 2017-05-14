@@ -1,0 +1,165 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<!doctype html>
+<!-- ng-strict-di -->
+<html lang="en" ng-app='airs'>
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="IOT,M2M,MQTT " />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>IoT Platform Admin Console</title>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="icon" type="image/x-icon" href="images/favicon.jpg?v=0.1.0"/>
+	<!-- build:css({tmp/serve,src}) styles/vendor.css -->
+	<!-- bower:css -->
+	<!-- run `gulp inject` to automatically populate bower styles dependencies -->
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:css({tmp/serve,src}) styles/app.css -->
+	<!-- inject:css -->
+	<!-- css files will be automatically insert here -->
+	<!-- endinject -->
+	<!-- endbuild -->
+	<style type="text/css">
+		html {
+			background: url(images/bg.jpg) no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-color: rgba(255, 255, 255, 0);
+		}
+
+		body {
+			background-color: rgba(255, 255, 255, 0);
+		}
+
+
+		/*
+            Page: register and login
+        */
+		.form-box {
+			width: 360px;
+			margin: 90px auto 0 auto;
+		}
+		.form-box .header {
+			-webkit-border-top-left-radius: 4px;
+			-webkit-border-top-right-radius: 4px;
+			-webkit-border-bottom-right-radius: 0;
+			-webkit-border-bottom-left-radius: 0;
+			-moz-border-radius-topleft: 4px;
+			-moz-border-radius-topright: 4px;
+			-moz-border-radius-bottomright: 0;
+			-moz-border-radius-bottomleft: 0;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+			/*   background: #3d9970; */
+			/* background: #3c8dbc !important; */
+			background: #61a9eb !important;
+			box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.2);
+			padding: 20px 10px;
+			text-align: center;
+			font-size: 26px;
+			font-weight: 300;
+			color: #fff;
+		}
+		.form-box .body,
+		.form-box .footer {
+			padding: 10px 20px;
+			background: #fff;
+			color: #444;
+		}
+		.form-box .body > .form-group,
+		.form-box .footer > .form-group {
+			margin-top: 20px;
+		}
+		.form-box .body > .form-group > input,
+		.form-box .footer > .form-group > input {
+			border: #fff;
+		}
+		.form-box .body > .btn,
+		.form-box .footer > .btn {
+			margin-bottom: 10px;
+		}
+		.form-box .footer {
+			-webkit-border-top-left-radius: 0;
+			-webkit-border-top-right-radius: 0;
+			-webkit-border-bottom-right-radius: 4px;
+			-webkit-border-bottom-left-radius: 4px;
+			-moz-border-radius-topleft: 0;
+			-moz-border-radius-topright: 0;
+			-moz-border-radius-bottomright: 4px;
+			-moz-border-radius-bottomleft: 4px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 4px;
+			border-bottom-left-radius: 4px;
+		}
+
+		.btn.btn-circle {
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			padding: 0;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+		}
+
+	</style>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+
+	<!--[if lt IE 10]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+</head>
+
+
+<div class="container w-xxl w-auto-xs">
+	<!--<a href class="navbar-brand block m-t">IoT.AI</a>-->
+	<div ui-view></div>
+	<div class="text-center" ng-include="'app/main/blocks/page.footer.html'">
+	</div>
+</div>
+
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({tmp/serve,tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
+
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
+
+</body>
+</html>
+

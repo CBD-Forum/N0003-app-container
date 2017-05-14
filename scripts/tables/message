@@ -1,0 +1,13 @@
+CREATE TABLE message (
+    rowid BIGINT NOT NULL AUTO_INCREMENT,
+    messageid VARCHAR(36) NOT NULL,
+    userid VARCHAR(36) NOT NULL,
+    message TEXT,
+    status VARCHAR(20) NOT NULL,
+    deleted  TINYINT UNSIGNED ZEROFILL DEFAULT 0,
+    createdAt VARCHAR(20) NOT NULL,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (rowid),
+    UNIQUE KEY (messageid),
+    INDEX USING BTREE (userid)
+    );

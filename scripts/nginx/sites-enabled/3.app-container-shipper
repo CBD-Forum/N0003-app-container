@@ -1,0 +1,15 @@
+server {
+	listen 8030;
+
+	root /home/ubuntu/igc;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name app-container-console-shipper;
+
+	location / {
+		proxy_pass http://gateway;
+		try_files $uri $uri/ =404;
+	}
+
+}

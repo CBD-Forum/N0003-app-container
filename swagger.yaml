@@ -1,0 +1,2228 @@
+swagger: '2.0'
+info:
+  title: App-container API
+  description: >-
+    App-container APIs mainly consists of authentication, resource transaction
+    and order transaction.
+  version: 1.0.1
+  termsOfService: 'http://console.hnabaas.com/terms'
+  contact:
+    name: API Support
+    email: ct.shi@hnair.com
+host: hnabaas.com
+basePath: /service
+schemes:
+  - http
+  - https
+produces:
+  - application/json
+paths:
+  /resource/vehicle:
+    post:
+      tags:
+        - Vehicle
+      summary: add a new vehicle to the ledger
+      description: ''
+      operationId: addVehicle
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Vehicle object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/Vehicle'
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - Vehicle
+      summary: Update an existing vehicle
+      description: ''
+      operationId: updateVehicle
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Vehicle object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/Vehicle'
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+        '405':
+          description: Validation exception
+  '/resource/vehicle/{vehicleId}':
+    get:
+      tags:
+        - Vehicle
+      summary: Find vehicle by id
+      description: Returns a single vehicle
+      operationId: getVehicleById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passsed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: vehicleId
+          in: path
+          description: ID of a vehicle to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Vehicle'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+    delete:
+      tags:
+        - Vehicle
+      summary: Delete a vehicle by id
+      description: ''
+      operationId: deleteVehicle
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: vehicleId
+          in: path
+          description: ID of a vehicle to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Vehicle'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+  /resource/vehicle/findByOwnerId:
+    get:
+      tags:
+        - Vehicle
+      summary: Finds vehicles by ownerId
+      description: ''
+      operationId: findVehiclesByOwnerId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: ownerid
+          in: query
+          description: OwnerId values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Vehicle'
+        '400':
+          description: Invalid ownerId value
+  /resource/shippingschedule:
+    post:
+      tags:
+        - ShippingSchedule
+      summary: add a new shipping schedule to the ledger
+      description: ''
+      operationId: addShippingSchedule
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Shipping Schedule object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/ShippingSchedule'
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - ShippingSchedule
+      summary: Update an existing shipping schedule
+      description: ''
+      operationId: updateShippingSchedule
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: ShippingSchedule object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/ShippingSchedule'
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ShippingSchedule not found
+        '405':
+          description: Validation exception
+  '/resource/shippingschedule/{shippingScheduleId}':
+    get:
+      tags:
+        - ShippingSchedule
+      summary: Find shipping schedule by id
+      description: Returns a single shipping schedule
+      operationId: getShippingScheduleById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: shippingScheduleId
+          in: path
+          description: ID of a shipping schedule
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ShippingSchedule'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ShippingSchedue not found
+    delete:
+      tags:
+        - ShippingSchedule
+      summary: Delete a shipping schedule by id
+      description: ''
+      operationId: deleteShippingSchedule
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: shippingScheduleId
+          in: path
+          description: ID of a shippingSchedule to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ShippingSchedule'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+  /resource/shippingschedule/findByOwnerId:
+    get:
+      tags:
+        - ShippingSchedule
+      summary: Finds shipping schedules by ownerId
+      description: ''
+      operationId: findShippingSchedulesByOwnerId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: ownerid
+          in: query
+          description: OwnerId values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShippingSchedule'
+        '400':
+          description: Invalid ownerId value
+  /resource/container:
+    post:
+      tags:
+        - Container
+      summary: add a new container to the ledger
+      description: ''
+      operationId: addContainer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Container object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/Container'
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - Container
+      summary: Update an existing container
+      description: ''
+      operationId: updateContainer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Container object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/Container'
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Container not found
+        '405':
+          description: Validation exception
+  '/resource/container/{containerId}':
+    get:
+      tags:
+        - Container
+      summary: Find container by id
+      description: Returns a single container
+      operationId: getContainerById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: containerId
+          in: path
+          description: ID of a shipping schedule to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Container'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Container not found
+    delete:
+      tags:
+        - Container
+      summary: Delete a container by id
+      description: ''
+      operationId: deleteContainer
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: containerId
+          in: path
+          description: ID of a shippingSchedule to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ShippingSchedule'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+  /resource/container/findByOwnerId:
+    get:
+      tags:
+        - Container
+      summary: Finds containers by ownerId
+      description: ''
+      operationId: findContainersByOwnerId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: ownerid
+          in: query
+          description: OwnerId values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Container'
+        '400':
+          description: Invalid ownerId value
+  '/resource/transporttask/{taskId}':
+    get:
+      tags:
+        - TransportTask
+      summary: Find transport task by id
+      description: Returns a single transport task
+      operationId: getTransportTaskById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: taskId
+          in: path
+          description: ID of a transport task to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TransportTask'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Container not found
+    delete:
+      tags:
+        - TransportTask
+      summary: Delete a transport task by id
+      description: ''
+      operationId: deleteTransportTask
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: taskId
+          in: path
+          description: ID of a transport task
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TransportTask'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: TransportTask not found
+  /resource/transporttask/findByOwnerId:
+    get:
+      tags:
+        - TransportTask
+      summary: Finds TransportTasks by ownerId
+      description: ''
+      operationId: findTransportTasksByOwnerId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: ownerid
+          in: query
+          description: OwnerId values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TransportTask'
+        '400':
+          description: Invalid ownerId value
+  /order/client/create:
+    post:
+      tags:
+        - Order
+      summary: 'add a new order to the ledger, proposed by the client'
+      description: ''
+      operationId: createOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: OrderCreateRequest object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/OrderCreateRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/cargoagent/check:
+    post:
+      tags:
+        - Order
+      summary: 'check to accept the order or not, proposed by the cargo agent'
+      description: ''
+      operationId: checkOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderCheckRequest object that needs to be used to accept or deny
+            order
+          required: true
+          schema:
+            $ref: '#/definitions/OrderCheckRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/cargoagent/bookspace:
+    post:
+      tags:
+        - Order
+      summary: 'book space from a shipper, proposed by the cargo agent'
+      description: ''
+      operationId: bookSpace
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: OrderBookSpaceRequest object that needs to be used to book space
+          required: true
+          schema:
+            $ref: '#/definitions/OrderBookSpaceRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/cargoagent/bookvehicle:
+    post:
+      tags:
+        - Order
+      summary: 'book vehicle from a carrier, proposed by the cargo agent'
+      description: ''
+      operationId: bookVehicle
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: OrderBookVehicleRequest object that needs to be used to book space
+          required: true
+          schema:
+            $ref: '#/definitions/OrderBookVehicleRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/carrier/fetchemptycontainers:
+    post:
+      tags:
+        - Order
+      summary: 'fetch empty containers from a shipper, proposed by the carrier'
+      description: ''
+      operationId: fetchEmptyContainers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderFetchEmptyContainersRequest object that used to add the date
+            for delivery， 记录设备（空集装箱）移出时间
+          required: true
+          schema:
+            $ref: '#/definitions/OrderFetchEmptyContainersRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/carrier/packgoods:
+    post:
+      tags:
+        - Order
+      summary: 'pack goods into the empty containers, proposed by the carrier'
+      description: ''
+      operationId: packGoods
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderPackGoodsRequest object that used to add the the packing list
+            to the order
+          required: true
+          schema:
+            $ref: '#/definitions/OrderPackGoodsRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/carrier/arriveyard:
+    post:
+      tags:
+        - Order
+      summary: 'deliver the goods and containers to yard , proposed by the carrier'
+      description: ''
+      operationId: arriveYard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderArriveYardRequest object that used to add the the date for
+            arriving the yard. 抵达堆场后该运输任务结束
+          required: true
+          schema:
+            $ref: '#/definitions/OrderArriveYardRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/shipper/loadgoods:
+    post:
+      tags:
+        - Order
+      summary: Goods being loaded into the ship
+      description: ''
+      operationId: loadGoods
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderLoadGoods object that used to add the the date for loading
+            ship. 货物装船时间
+          required: true
+          schema:
+            $ref: '#/definitions/OrderLoadGoodsRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/shipper/departrue:
+    post:
+      tags:
+        - Order
+      summary: The ship departed from the loading port.
+      description: ''
+      operationId: departure
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderDepatureRequest object that used to add the the date for
+            departure.集装箱离港时间
+          required: true
+          schema:
+            $ref: '#/definitions/OrderDepartureRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/shipper/arrivedestinationport:
+    post:
+      tags:
+        - Order
+      summary: The ship arrived the destination port.
+      description: ''
+      operationId: arriveDestinationPort
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderArriveDestinationRequest object that used to add the the date
+            for its arrival.集装箱到目的港口时间
+          required: true
+          schema:
+            $ref: '#/definitions/OrderArriveDestinationPortRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/shipper/delivergoods:
+    post:
+      tags:
+        - Order
+      summary: The goods delivered to the client.
+      description: ''
+      operationId: deliverGoods
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderDeliverGoodsRequest object that used to add the the date for
+            delivery.货物送至客户
+          required: true
+          schema:
+            $ref: '#/definitions/OrderDeliverGoodsRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/client/confirmreceipt:
+    post:
+      tags:
+        - Order
+      summary: The clent confirmed that the goods has been receipt.
+      description: ''
+      operationId: confirmReceipt
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: >-
+            OrderConfirmReceiptRequest object that used to add the the date for
+            receipt.客户确认收到货物
+          required: true
+          schema:
+            $ref: '#/definitions/OrderConfirmReceiptRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  /order/cargoagent/finish:
+    post:
+      tags:
+        - Order
+      summary: 'The cargo agent closed the order, saying the order has been finished.'
+      description: ''
+      operationId: finishOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: OrderFinishRequest object that used to close the order.订单完成
+          required: true
+          schema:
+            $ref: '#/definitions/OrderFinishRequest'
+      responses:
+        '200':
+          description: Successful Operation
+        '405':
+          description: Invalid input
+  '/order/{orderId}':
+    get:
+      tags:
+        - Order
+      summary: Find order by id
+      description: Returns a single order
+      operationId: getOrderById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passsed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: orderId
+          in: path
+          description: ID of an order to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+    delete:
+      tags:
+        - Order
+      summary: Delete an order by id
+      description: ''
+      operationId: deleteOrder
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: orderId
+          in: path
+          description: ID of an order to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+  /order/findByUserId:
+    get:
+      tags:
+        - Order
+      summary: Finds orders owned by client
+      description: ''
+      operationId: findOrdersByUserId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: userid
+          in: query
+          description: userid values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+        '400':
+          description: Invalid clientId value
+  /message:
+    post:
+      tags:
+        - Message
+      summary: add a new message to the ledger
+      description: ''
+      operationId: addMessage
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Message object that needs to be added to the mysql
+          required: true
+          schema:
+            $ref: '#/definitions/Message'
+      responses:
+        '405':
+          description: Invalid input
+  '/message/{messageId}':
+    get:
+      tags:
+        - Message
+      summary: Find message by id
+      description: Returns a single message
+      operationId: getMessageById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passsed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: messageId
+          in: path
+          description: ID of a message to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Message'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Message not found
+    delete:
+      tags:
+        - Message
+      summary: Delete a message by id
+      description: ''
+      operationId: deleteMessage
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: messageId
+          in: path
+          description: ID of a message to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Message'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Message not found
+  /message/findByUserId:
+    get:
+      tags:
+        - Message
+      summary: Finds messages by userId
+      description: ''
+      operationId: findMessagesByUserId
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: UserId values that need to be considered for filter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Message'
+        '400':
+          description: Invalid userId value
+  /user:
+    post:
+      tags:
+        - User
+      summary: register a user
+      description: ''
+      operationId: registerUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: User object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - User
+      summary: Update an existing user
+      description: ''
+      operationId: updateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Vehicle object that needs to be added to the ledger
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+  '/user/{userId}':
+    get:
+      tags:
+        - User
+      summary: Find user by id
+      description: Returns a single user
+      operationId: getUserById
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passsed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: userId
+          in: path
+          description: ID of a vehicle to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+  /user/findByUserRoleType:
+    get:
+      tags:
+        - User
+      summary: Finds users by type
+      description: ''
+      operationId: findUsersByRoleType
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: userid
+          description: user id to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: token
+          description: token to be passed as a header
+          required: true
+          type: string
+        - in: header
+          name: sessionid
+          description: session id to be passed as a header
+          required: true
+          type: string
+        - name: roletype
+          in: query
+          description: >-
+            roletype values that need to be considered for filter, roletype -
+            regularclient, cargoagent, carrier and shipper. Notice that only
+            cargoagent, carrier and shipper could be searched
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        '400':
+          description: Invalid userType value
+  /user/session/login:
+    get:
+      tags:
+        - Session
+      summary: log a user into the system
+      description: ''
+      operationId: login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: ''
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          type: string
+          description: password must be hashed by SHA256
+      responses:
+        '200':
+          description: successful operation
+        '405':
+          description: Invalid input
+  /user/session/refresh:
+    get:
+      tags:
+        - Session
+      summary: refresh the session for a user
+      description: ''
+      operationId: refresh
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: userid
+          in: header
+          description: ''
+          required: true
+          type: string
+        - name: sessionid
+          in: header
+          required: true
+          type: string
+          description: ''
+        - name: token
+          in: header
+          required: true
+          type: string
+          description: 'session token to be passed as a header '
+      responses:
+        '200':
+          description: successful operation
+        '405':
+          description: Invalid input
+  /user/session/logout:
+    get:
+      tags:
+        - Session
+      summary: refresh the session for a user
+      description: ''
+      operationId: logout
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: userid
+          in: header
+          description: ''
+          required: true
+          type: string
+        - name: sessionid
+          in: header
+          required: true
+          type: string
+          description: ''
+        - name: token
+          in: header
+          required: true
+          type: string
+          description: 'session token to be passed as a header '
+      responses:
+        '200':
+          description: successful operation
+        '405':
+          description: Invalid input
+definitions:
+  Vehicle:
+    type: object
+    properties:
+      Id:
+        type: string
+        description: 车辆的id，系统生成
+      VehicleNo:
+        type: string
+        description: 车辆编号
+      Driver:
+        $ref: '#/definitions/Driver'
+      Status:
+        type: string
+        description: 车辆的当前使用状态，空闲或者
+      OwnerId:
+        type: string
+        description: 所属拖车公司的ID
+  Driver:
+    type: object
+    properties:
+      Name:
+        type: string
+      Phone:
+        type: string
+      DrivingLicense:
+        type: string
+        description: 驾驶证号ß
+  ShippingSchedule:
+    type: object
+    properties:
+      Id:
+        type: string
+        description: 航次的id，系统生成
+      OwnerId:
+        type: string
+        description: 所属船公司Id
+      VoyNo:
+        type: string
+        description: 航次号
+      Vessel:
+        $ref: '#/definitions/Vessel'
+      PortOfLoading:
+        type: string
+        description: 装船港口
+      PortOfDischarge:
+        type: string
+        description: 卸货港口
+      PortOfDelivery:
+        type: string
+        description: ''
+      DepartureDate:
+        type: string
+      ArrivalDate:
+        type: string
+      Status:
+        type: string
+        description: ''
+  Vessel:
+    type: object
+    properties:
+      VesselNo:
+        type: string
+        description: 船的编号
+      Name:
+        type: string
+      OwnerId:
+        type: string
+        description: 所属船公司
+      Space:
+        $ref: '#/definitions/Space'
+  Space:
+    type: object
+    properties:
+      TotalNum:
+        type: integer
+        format: int32
+      RestNum:
+        type: integer
+        format: int32
+      SpaceUsed:
+        type: array
+        items:
+          type: string
+      SpaceUnUsed:
+        type: array
+        items:
+          type: string
+  Container:
+    type: object
+    properties:
+      Id:
+        type: string
+        description: 集装箱的id，系统生成
+      ContainerNo:
+        type: string
+        description: 集装箱编号，系统生成
+      Type:
+        type: string
+      MaxWeight:
+        type: integer
+        description: ''
+      TareWeight:
+        type: integer
+        description: ''
+      Measurement:
+        type: integer
+      Location:
+        type: string
+      Status:
+        type: string
+      OwnerId:
+        type: string
+  TransportTask:
+    type: object
+    properties:
+      Id:
+        type: string
+        description: 车辆运输任务的id，系统生成
+      ClientId:
+        type: string
+        description: 普通客户（发货方/收货方）
+      CargoAgentId:
+        type: string
+      CarrierId:
+        type: string
+      OrderId:
+        type: string
+      Vehicles:
+        type: array
+        items:
+          $ref: '#/definitions/Vehicle'
+      StartAt:
+        type: string
+        description: 该运输任务的发起时间
+      EndAt:
+        type: string
+        description: ''
+      Status:
+        type: string
+  OrderCreateRequest:
+    type: object
+    properties:
+      ConsigningForm:
+        $ref: '#/definitions/ConsigningForm'
+  ConsigningForm:
+    type: object
+    description: client 和 货代 cargo agent 之间的委托单
+    properties:
+      ConsigningFormNo:
+        type: string
+        description: 由系统生成
+      ClientId:
+        type: string
+        description: 普通客户（发货人、收货人）的 ID
+      CargoAgentId:
+        type: string
+        description: 货代 cargo agent 的 ID
+      GoodsList:
+        type: array
+        items:
+          $ref: '#/definitions/Goods'
+      DeliveryAddress:
+        type: string
+        description: 收货地址
+      ShippingAddress:
+        type: string
+        description: 发货地址
+      Consignee:
+        type: string
+        description: 发货人姓名
+      ConsigneePhone:
+        type: string
+        description: ''
+      Consignor:
+        type: string
+        description: 收货人姓名
+      ConsignorPhone:
+        type: string
+        description: ''
+      ExpectedDeliveryDate:
+        type: string
+        description: 期望发货的日期
+      DateForConfirmReceipt:
+        type: string
+        description: 确认收货的日期，后面由client进行订单操作时确认追加
+      DateForFinish:
+        type: string
+        description: 订单完成的日期，后面由货代cargo agent 操作完成
+  Goods:
+    type: object
+    description: ''
+    properties:
+      Name:
+        type: string
+      Type:
+        type: string
+      Measurement:
+        type: integer
+        format: int32
+      GrossWeight:
+        type: integer
+        format: int32
+  OrderCheckRequest:
+    type: object
+    properties:
+      CargoAgentId:
+        type: string
+        description: 货代的id
+      OrderId:
+        type: string
+        description: ''
+      IsOrderAccept:
+        type: boolean
+        description: 货代是否接受订单
+      Remark:
+        type: string
+        description: 拒绝的备注原因
+  OrderBookSpaceRequest:
+    type: object
+    properties:
+      CargoAgentId:
+        type: string
+        description: 货代的ID
+      ShipperId:
+        type: string
+        description: 船运公司的ID
+      OrderId:
+        type: string
+        description: ''
+      VoyageId:
+        type: string
+        description: 航次ID
+      ContainerType:
+        type: string
+        description: 集装箱类型
+      ContainerNum:
+        type: integer
+        format: int32
+        description: 集装箱的个数
+      SpaceNum:
+        type: integer
+        format: int32
+        description: 舱位个数
+  OrderBookVehicleRequest:
+    type: object
+    properties:
+      CargoAgentId:
+        type: string
+        description: 货代的ID
+      CarrierId:
+        type: string
+        description: 拖车公司的ID
+      OrderId:
+        type: string
+        description: ''
+      StartAt:
+        type: string
+        description: 订车的时间，默认为用车的计时开始
+      VehicleNum:
+        type: integer
+        format: int32
+        description: 所需车辆数
+  OrderFetchEmptyContainersRequest:
+    type: object
+    properties:
+      CarrierId:
+        type: string
+        description: 拖车公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForDelivered:
+        type: string
+        description: 空集装设备移出堆场的时间
+  OrderPackGoodsRequest:
+    type: object
+    properties:
+      CarrierId:
+        type: string
+        description: 拖车公司的ID
+      OrderId:
+        type: string
+        description: ''
+      PackingList:
+        $ref: '#/definitions/PackingList'
+  PackingList:
+    type: object
+    properties:
+      Items:
+        type: array
+        items:
+          $ref: '#/definitions/PackingListItem'
+      DateForPackingGoods:
+        type: string
+        description: 货物装箱时间
+  PackingListItem:
+    type: object
+    properties:
+      CongainerId:
+        type: string
+      Goods:
+        type: array
+        items:
+          $ref: '#/definitions/Goods'
+  OrderArriveYardRequest:
+    type: object
+    properties:
+      CarrierId:
+        type: string
+        description: 拖车公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForReceiver:
+        type: string
+        description: 设备进场时间，即货物进入堆场的时间
+  OrderLoadGoodsRequest:
+    type: object
+    properties:
+      ShipperId:
+        type: string
+        description: 船运公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForLoading:
+        type: string
+        description: 货物装船时间
+  OrderDepartureRequest:
+    type: object
+    properties:
+      ShipperId:
+        type: string
+        description: 船运公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForLoading:
+        type: string
+        description: 货物装船时间
+  OrderArriveDestinationPortRequest:
+    type: object
+    properties:
+      ShipperId:
+        type: string
+        description: 船运公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForArrival:
+        type: string
+        description: 货物抵达目的港口时间
+  OrderDeliverGoodsRequest:
+    type: object
+    properties:
+      ShipperId:
+        type: string
+        description: 船运公司的ID
+      OrderId:
+        type: string
+        description: ''
+      DateForDeliverGoods:
+        type: string
+        description: 送货时间
+  OrderConfirmReceiptRequest:
+    type: object
+    properties:
+      ClientId:
+        type: string
+        description: ''
+      OrderId:
+        type: string
+        description: ''
+      DateForConfirmReceipt:
+        type: string
+        description: 客户确认收货时间
+  OrderFinishRequest:
+    type: object
+    properties:
+      ClientId:
+        type: string
+        description: ''
+      OrderId:
+        type: string
+        description: ''
+      DateForFinish:
+        type: string
+        description: 订单完成时间
+  Order:
+    type: object
+    properties:
+      Id:
+        type: string
+        description: ''
+      OrderNo:
+        type: string
+        description: ''
+      ConsigningForm:
+        $ref: '#/definitions/ConsigningForm'
+      BookingForm:
+        $ref: '#/definitions/BookingForm'
+      CarryingForm:
+        $ref: '#/definitions/CarryingForm'
+      State:
+        type: string
+        description: 订单状态，每次对/order的一个post方法会改变订单的状态
+      IsDeleted:
+        type: boolean
+      Remark:
+        type: string
+        description: 备注信息
+  BookingForm:
+    type: object
+    properties:
+      BookingFormNo:
+        type: string
+      ShipperId:
+        type: string
+      Voyage:
+        $ref: '#/definitions/ShippingSchedule'
+      BerthNo:
+        type: array
+        items:
+          type: string
+          description: 舱位号
+      Containers:
+        type: array
+        items:
+          $ref: '#/definitions/Container'
+      DateForLoading:
+        type: string
+        description: 装船时间
+      DateForArrival:
+        type: string
+        description: 抵达目的港口时间
+      DateForDeliverGoods:
+        type: string
+        description: 货物送达时间
+  CarryingForm:
+    type: object
+    properties:
+      CarryingFormNo:
+        type: string
+      CarrierId:
+        type: string
+      TransportTaskId:
+        type: string
+      Vehicles:
+        type: array
+        items:
+          $ref: '#/definitions/Vehicle'
+      Status:
+        type: string
+      DateForReciver:
+        type: string
+        description: 设备进场时间，装满货物的集装箱进入堆场的时间
+      DateForDeliver:
+        type: string
+        description: 设备出场时间，空集装箱出场时间
+  Message:
+    type: object
+    properties:
+      UserID:
+        type: string
+      MessageId:
+        type: string
+      Message:
+        type: string
+      Status:
+        type: string
+      CreatedAt:
+        type: string
+  User:
+    type: object
+    properties:
+      UserId:
+        type: string
+      UserName:
+        type: string
+      PersonalInfo:
+        $ref: '#/definitions/Person'
+      Comapny:
+        $ref: '#/definitions/Company'
+      Role:
+        type: string
+  Person:
+    type: object
+    properties:
+      Name:
+        type: string
+      Email:
+        type: string
+      PhoneNum:
+        type: string
+      Address:
+        type: string
+      Fax:
+        type: string
+  Company:
+    type: object
+    properties:
+      OrgId:
+        type: string
+        description: 机构
+      TaxId:
+        type: string
+        description: 税收
+      CreditId:
+        type: string
+        description: 信用
+      BusinessId:
+        type: string
+        description: ''
+      Name:
+        type: string
+        description: 公司名称
+      Address:
+        type: string
+        description: 公司地址
+      Homepage:
+        type: string
+        description: ''

@@ -1,0 +1,15 @@
+vp0:
+    image: hyperledger/fabric-peer
+    environment:
+        - CORE_PEER_ADDRESSAUTODETECT=true
+        - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
+        - CORE_LOGGING_LEVEL=DEBUG
+        - CORE_PEER_ID=vp0
+    ports:
+        - "7050:7050"
+        - "7051:7051"
+    volumes:
+        - /usr/bin/docker:/usr/bin/docker:ro
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /Users/ting/work/src/cbdforum:/opt/gopath/src/cbdforum
+    command: sh -c "sleep 5; peer node start --peer-chaincodedev"

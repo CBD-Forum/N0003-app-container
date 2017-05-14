@@ -1,0 +1,94 @@
+<!-- Copyright [2016] [Lele Guo]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--> 
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="orderGoodSpaceController as vm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper-xs">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h1 class="font-thin h3 text-black m-l m-t-sm m-b-sm">预定舱位 {{vm.orderInfo.orderno}}</h1>
+                    <!--<small class="text-muted m-l">订单管理</small>-->
+                </div>
+            </div>
+        </div>
+
+
+        <!--content-->
+        <div class="wrapper bg-light">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form role="form" name="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">订单号</label>
+                            <div class="col-sm-5">
+                                <p class="form-control-static">{{vm.orderInfo.orderid}}</p>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">船运公司</label>
+                            <div class="col-sm-5">
+                                <select class="m-n form-control col-md-10" ng-model="vm.orderInfo.shipperid" style="width: 200px;" ng-change="vm.didSelectCompanyAction()">
+                                    <option ng-repeat="company in vm.companys" class="col-md-10 col-sm-10" value="{{company.id}}">{{company.company.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">船运计划</label>
+                            <div class="col-sm-5">
+                                <select class="m-n form-control col-md-10" ng-model="vm.orderInfo.voyageid" style="width: 200px;" ng-change="vm.didSelectScheduleAction()">
+                                    <option ng-repeat="schedule in vm.shippingSchedules" class="col-md-10 col-sm-10" value="{{schedule.id}}">{{schedule.voyno + '/' + schedule.vessel.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">集装箱数量</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.orderInfo.containernum" placeholder="" type="number" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">舱位数量</label>
+                            <div class="col-sm-5">
+                                <input ng-model="vm.orderInfo.spacenum" placeholder="" type="number" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <button type="submit" class="btn btn-default"  ng-click="vm.submitAction('later')">取消</button>
+                                <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid"  ng-click="vm.submitAction('confirm')">确定</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="myModalContent.html">
+            <div ng-include="'app/components/core/modal.html'"></div>
+        </script>
+
+
+    </div>
+</div>
+
