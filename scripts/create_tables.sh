@@ -2,10 +2,13 @@
 
 # crate tables defined in the directory "table"
 
+HOSTNAME=""
+USERNAME=""
+PASSWORD=""
+echo "Usage:"
+echo "    HOSTNAME=XXX USERNAME=XXX PASSWORD=XXX ./create_table.sh"
+
 set -e
-HOSTNAME="app-container-db.cs5vq0ejfcck.rds.cn-north-1.amazonaws.com.cn"
-USERNAME="root"
-PASSWORD="HFBkCNuF2WcucFvC"
 #DATABASE="app_container_db"
 BATCH_FILE=`mktemp batchfile.XXXXXX`
 echo "use $DATABASE;" > $BATCH_FILE && echo "use $DATABASE;" >> $BATCH_FILE
